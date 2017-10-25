@@ -242,6 +242,14 @@ void draw() {
       rect(width/2, 0, width/2, height/2);
       fill(75, 100, 100);
       text("Incorrect answer, please try again!", width/1.325, height/4);
+      fill(0);
+      textSize(width/27.27);
+      for (int x = -1; x < 2; x++) {
+        text(q2, (width/2)+x, height/2);
+        text(q2, width/2, (height/2)+x);
+      }
+      fill(100);
+      text(q2, width/2, height/2);
     } else if (keyPressed && key == '4') {
       fill(0);
       textSize(16);
@@ -287,8 +295,8 @@ void draw() {
         screen = 3;
       }
     }
-  }
-  else if (screen == 3) {
+  } 
+  if (screen == 3) {
     //Display the 4 squares
     //Square "A"
     fill(55, 100, 100);
@@ -302,8 +310,8 @@ void draw() {
     //Square "D"
     fill(25, 100, 90);
     rect(width/2, height/2, width/2, height/2);
-    
-    
+
+
     //4 Answers
     textAlign(CENTER);
     textSize(width/9.375);
@@ -311,22 +319,22 @@ void draw() {
 
     text("1", width/4, height/4);
     textSize(width/24);
-    text("\n Robert Borden", width/4, height/4);
+    text("\n1976", width/4, height/4);
 
     textSize(width/9.375);
     text("2", width/4, height/1.25);
     textSize(width/24);
-    text("\n William Lyon Mackenzie", width/4, height/1.25);
+    text("\n1965", width/4, height/1.25);
 
     textSize(width/9.375);
     text("3", width/1.3, height/4);
     textSize(width/24);
-    text("\n Lester B. Pearson", width/1.3, height/4);
+    text("\n1867", width/1.3, height/4);
 
     textSize(width/9.375);
     text("4", width/1.3, height/1.25);
     textSize(width/24);
-    text("\n R. B. Bennet", width/1.3, height/1.25);
+    text("\n1982", width/1.3, height/1.25);
 
     //Display the question, colour it white, outline it black for visibility
     fill(0);
@@ -341,21 +349,42 @@ void draw() {
 
     //Selecting the answer via Keyboard (1, 2, 3 ,4)
     if (keyPressed && key == '1') {
-      correct = 2;
+      textSize(width/37.5);
+      fill(0);
+      rect(0, 0, width/2, height/2);
+      fill(55, 100, 100);
+      text("Incorrect answer, please try again!", width/4, height/4);
+      fill(0);
+      //Redrawing the question so the rect doesn't cover it...
+      textSize(width/27.27);
+      for (int x = -1; x < 2; x++) {
+        text(q3, (width/2)+x, height/2);
+        text(q3, width/2, (height/2)+x);
+      }
       fill(100);
       text(q3, width/2, height/2);
     } else if (keyPressed && key == '2') {
+      correct = 3;
       textSize(16);
       fill(0);
       rect(0, height/2, width/2, height/2);
       fill(95, 100, 100);
-      text("Incorrect answer, please try again!", width/4, height/1.3);
+      text("Correct answer!", width/4, height/1.3);
     } else if (keyPressed && key == '3') {
       textSize(16);
       fill(0);
       rect(width/2, 0, width/2, height/2);
       fill(75, 100, 100);
       text("Incorrect answer, please try again!", width/1.325, height/4);
+      //Redrawing the question so the rect doesn't cover it...
+      fill(0);
+      textSize(width/27.27);
+      for (int x = -1; x < 2; x++) {
+        text(q3, (width/2)+x, height/2);
+        text(q3, width/2, (height/2)+x);
+      }
+      fill(100);
+      text(q3, width/2, height/2);
     } else if (keyPressed && key == '4') {
       fill(0);
       textSize(16);
@@ -387,7 +416,7 @@ void draw() {
       fill(c = c + 0.25);
       text(instructions, width/2, height/1.05);
     }
-    if (correct == 2) {
+    if (correct == 3) {
       fill(55, 100, 100);
       rect(0, 0, width, height);
       fill(100);
@@ -401,11 +430,21 @@ void draw() {
         screen = 4;
       }
     }
-  }
-  else if (screen == 4) {
+  } else if (screen == 4) {
     rect(0, 0, width, height);
     fill(0);
+    textSize(32);
+    textAlign(CENTER);
     text("You've completed the trivia! \n Congratulations!", width/2, height/2);
+    fill(0);
+    rectMode(CENTER);
+    rect(width/2, height/1.3, 100, 50);
+    textSize(16);
+    fill(100);
+    text("Exit", width/2, height/1.3);
+    if (mousePressed && mouseX < 200 && mouseY < 400) {
+      exit();
+    }
   }
 
   //debug codes
