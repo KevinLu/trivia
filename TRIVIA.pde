@@ -6,6 +6,7 @@ int screen = -1;
 int correct = 0; //screen when you get the answer correct
 int offset = 0;
 int timer = 0;
+int incorrect = 0;
 void settings() {
   size(600, 600);
 }
@@ -15,16 +16,12 @@ void setup() {
   q1 = "How many oceans border Canada?";
   q2 = "Whose face is on the Canadian $100 bill?";
   q3 = "In which year was the Canadian flag adopted?";
-  instructions = "Press keys 1 to 4 on your keyboard or use your mouse to select an answer!";
+  instructions = "Press keys 1 to 4 on your keyboard to select an answer!";
   welcome = "Welcome to TRIVIA";
   invalid = "INVALID ANSWER! \n PLEASE SELECT 1, 2, 3 or 4.";
-  ver = "Canadian Trivia \n Version 0.2";
+  ver = "Canadian Trivia \n by Kevin Lu";
   bg = loadImage("Capture.PNG");
 }
-//void mousePressed() {
-//  Set the screen when whatever happens that you want to happen
-//  screen = min(screen + 1, 3);
-//}
 void draw() {
   //Very cool screens, screen 0 is the menu page
 
@@ -64,10 +61,10 @@ void draw() {
     fill(0);
     textSize(width/18.75);
     text("START", width/2, height/1.375);
-    if (mouseX > 200 && mouseY > 400 && mousePressed && mouseX < 400 && mouseY < 450) {
+    if (keyPressed && key == ENTER || mouseX > 200 && mouseY > 400 && mousePressed && mouseX < 400 && mouseY < 450) {
       screen = 1;
     }
-  } else if (screen == 1) { //just putting the entire thing here because I'm bad at processing
+  } else if (screen == 1) { //just putting the entire thing here because I'm bad at processing (this is the 1st question)
     //Display the 4 squares
     noStroke();
     //Square "A"
@@ -110,6 +107,7 @@ void draw() {
       rect(0, 0, width/2, height/2);
       fill(55, 100, 100);
       text("Incorrect answer, please try again!", width/4, height/4);
+      incorrect++;
       fill(0);
       //Redrawing the question so the rect doesn't cover it...
       textSize(width/27.27);
@@ -125,6 +123,7 @@ void draw() {
       rect(0, height/2, width/2, height/2);
       fill(95, 100, 100);
       text("Incorrect answer, please try again!", width/4, height/1.3);
+      incorrect++;
     } else if (keyPressed && key == '3') {
       textSize(width/37.5);
       fill(75, 100, 100);
@@ -135,6 +134,7 @@ void draw() {
       rect(width/2, height/2, width/2, height/2);
       fill(25, 100, 90);
       text("Incorrect answer, please try again!", width/1.325, height/1.3);
+      incorrect++;
       //Redrawing the question so the rect doesn't cover it...
       fill(0);
       textSize(width/27.27);
@@ -170,7 +170,7 @@ void draw() {
       textSize(width/24); //25
       fill(0);
       text("Next Question", width/2, height/1.375);
-      if (mousePressed && mouseX >= 200 && mouseY >= 400 && mouseX <= 400 && mouseY <= 450) {
+      if (keyPressed && key == ENTER || mousePressed && mouseX >= 200 && mouseY >= 400 && mouseX <= 400 && mouseY <= 450) {
         screen = 2;
       }
     }
@@ -236,12 +236,14 @@ void draw() {
       rect(0, height/2, width/2, height/2);
       fill(95, 100, 100);
       text("Incorrect answer, please try again!", width/4, height/1.3);
+      incorrect++;
     } else if (keyPressed && key == '3') {
       textSize(16);
       fill(0);
       rect(width/2, 0, width/2, height/2);
       fill(75, 100, 100);
       text("Incorrect answer, please try again!", width/1.325, height/4);
+      incorrect++;
       fill(0);
       textSize(width/27.27);
       for (int x = -1; x < 2; x++) {
@@ -256,6 +258,7 @@ void draw() {
       rect(width/2, height/2, width/2, height/2);
       fill(25, 100, 100);
       text("Incorrect answer, please try again!", width/1.325, height/1.3);
+      incorrect++;
       //Redrawing the question so the rect doesn't cover it...
       fill(0);
       textSize(width/27.27);
@@ -291,7 +294,7 @@ void draw() {
       textSize(25);
       fill(0);
       text("Next Question", width/2, height/1.375);
-      if (mousePressed && mouseX >= 200 && mouseY >= 400 && mouseX <= 400 && mouseY <= 450) {
+      if (keyPressed && key == ENTER || mousePressed && mouseX >= 200 && mouseY >= 400 && mouseX <= 400 && mouseY <= 450) {
         screen = 3;
       }
     }
@@ -354,6 +357,7 @@ void draw() {
       rect(0, 0, width/2, height/2);
       fill(55, 100, 100);
       text("Incorrect answer, please try again!", width/4, height/4);
+      incorrect++;
       fill(0);
       //Redrawing the question so the rect doesn't cover it...
       textSize(width/27.27);
@@ -376,6 +380,7 @@ void draw() {
       rect(width/2, 0, width/2, height/2);
       fill(75, 100, 100);
       text("Incorrect answer, please try again!", width/1.325, height/4);
+      incorrect++;
       //Redrawing the question so the rect doesn't cover it...
       fill(0);
       textSize(width/27.27);
@@ -391,6 +396,7 @@ void draw() {
       rect(width/2, height/2, width/2, height/2);
       fill(25, 100, 100);
       text("Incorrect answer, please try again!", width/1.325, height/1.3);
+      incorrect++;
       //Redrawing the question so the rect doesn't cover it...
       fill(0);
       textSize(width/27.27);
@@ -423,15 +429,18 @@ void draw() {
       textSize(32);
       text("Wow! Good job!", width/2, height/2);
       rect(width/3, height/1.5, 200, 50);
-      textSize(25);
+      textSize(21);
       fill(0);
-      text("Next Question", width/2, height/1.375);
+      text("Complete the Quiz", width/2, height/1.375);
       if (mousePressed && mouseX >= 200 && mouseY >= 400 && mouseX <= 400 && mouseY <= 450) {
         screen = 4;
+      } else if (keyPressed && key == ENTER) {
+        screen = 4;
+        delay(100);
       }
     }
   } else if (screen == 4) {
-    rect(0, 0, width, height);
+    background(100); //use a background for smooth text
     fill(0);
     textSize(32);
     textAlign(CENTER);
@@ -439,17 +448,42 @@ void draw() {
     fill(0);
     rectMode(CENTER);
     rect(width/2, height/1.3, 100, 50);
-    textSize(16);
+    textSize(32);
     fill(100);
-    text("Exit", width/2, height/1.3);
-    if (mousePressed && mouseX < 200 && mouseY < 400) {
+    text("Exit", width/2, height/1.27);
+    fill(0);
+    textSize(16);
+    text("Click or press ENTER", width/2, height/1.15);
+    if (keyPressed && key == ENTER || mousePressed && mouseX >= 250 && mouseY >= 435 && mouseX <= 350 && mouseY <= 485) {
       exit();
     }
   }
-
+  if (incorrect > 250) {
+    screen = 5; //the death screen :O
+  }
+  if (screen == 5) {
+    background(100);
+    textAlign(CENTER);
+    fill(0);
+    textSize(32);
+    text("You have answered\nincorrectly too many times.\nPlease try again.", width/2, height/2);
+    fill(0);
+    rectMode(CENTER);
+    rect(width/2, height/1.3, 100, 50);
+    textSize(32);
+    fill(100);
+    text("Exit", width/2, height/1.27);
+    fill(0);
+    textSize(16);
+    text("Click or press ENTER", width/2, height/1.15);
+    if (keyPressed && key == ENTER || mousePressed && mouseX >= 250 && mouseY >= 435 && mouseX <= 350 && mouseY <= 485) {
+      exit();
+    }
+  }
   //debug codes
-  fill(100);
-  textSize(12);
-  textAlign(LEFT);
-  text("x: " + mouseX +" " + "y:" + mouseY, 0, 12); //mouse coordinates
+  //fill(100);
+  //textSize(12);
+  //textAlign(LEFT);
+  //text("x: " + mouseX +" " + "y:" + mouseY, 0, 12); //mouse coordinates
+  //text(incorrect, 0, 24); //how many incorrect counts
 }
