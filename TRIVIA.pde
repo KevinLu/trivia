@@ -20,7 +20,7 @@ void setup() {
   welcome = "Welcome to TRIVIA";
   invalid = "INVALID ANSWER! \n PLEASE SELECT 1, 2, 3 or 4.";
   ver = "Canadian Trivia \n by Kevin Lu";
-  bg = loadImage("Capture.PNG");
+  bg = loadImage("Capture.jpg");
 }
 void draw() {
   //Very cool screens, screen 0 is the menu page
