@@ -20,10 +20,6 @@ Processing version 3 (newest version is preferred).
 * [Processing 3.3.6](https://processing.org/download/)
 * [Processing.js](http://processingjs.org/download/)
 
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
 ## License
 
 This project is licensed under the MIT License - please see the [LICENSE.md](LICENSE.md) file for details.
